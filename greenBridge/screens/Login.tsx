@@ -48,8 +48,9 @@ export const Login = () => {
           }}
           onChangeText={setLogin}
           value={login}
-          keyboardType="numeric"
-          placeholder="CPF/CNPJ"
+          autoComplete="email"
+          keyboardType="email-address"
+          placeholder="Email"
         />
         <TextInput
           style={{
@@ -66,6 +67,7 @@ export const Login = () => {
         />
 
         <TouchableHighlight
+          disabled={login.length < 10 || password.length < 5}
           onPress={() => navigation.navigate("Home")}
           style={{ marginLeft: 10, marginRight: 10, marginTop: 30 }}
           activeOpacity={0.6}
@@ -78,7 +80,7 @@ export const Login = () => {
               alignItems: "center",
               padding: 16,
               alignContent: "center",
-              backgroundColor: "#31A078",
+              backgroundColor: login.length < 10 || password.length < 5 ? "#d3d3d3" : "#31A078",
             }}
           >
             <Text style={{ fontFamily: size.Regular, fontSize: 16, color: "white" }}>
@@ -89,7 +91,7 @@ export const Login = () => {
 
         <Text
           style={{
-            marginTop: "auto",
+            marginTop: "50%",
             marginBottom: 10,
             fontSize: 14,
             textAlign: "center",
